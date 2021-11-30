@@ -39,8 +39,8 @@
                 Progressie: <?=$data['progress']?> procent<br>
                 Deze puzzels zijn aanwezig in <?=$data['title']?>:<br><?php foreach($data['puzzles']as$key=>$value){echo$value;echo"<br>";}?>
                 <!-- all ids of the puzzles in this room are given in a list here -->
-
-                <?php curl_close($curl); ?>
+                hallo
+                <?php curl_close($curl); ?> 
             </div>
         </main>
     </div>
