@@ -23,8 +23,24 @@
         <?php include_once('header.php') ?>
         <main class="mdl-layout__content">
             <div class="page-content">
-                <h1>Dit is kamer <?=$room_number?></h1>
-                Deze tekst komt vanuit kamer <?=$room_number?>
+                <?php
+                    $apiurl = 'localhost:3000/api/rooms';
+                    $curl = curl_init($apiurl);
+                    curl_setopt( $curl, CURLOPT_URL, $apiurl );
+                    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
+                    $result = curl_exec( $curl );
+                    $jsonDecoded = json_decode($result, true); // the json is now decoded to a php array
+                    $data = $jsonDecoded[$room_number];
+                ?>
+
+                <h1>Dit is <?=$data['title']?></h1>
+                Deze kamer wordt op dit moment <?php if($data['runningState']==false){echo"niet ";}?>gespeeld.<br>
+                <!-- if this room isn't running, it says "niet" between "moment" and "gespeeld" -->
+                Progressie: <?=$data['progress']?> procent<br>
+                Deze puzzels zijn aanwezig in <?=$data['title']?>:<br><?php foreach($data['puzzles']as$key=>$value){echo$value;echo"<br>";}?>
+                <!-- all ids of the puzzles in this room are given in a list here -->
+
+                <?php curl_close($curl); ?>
             </div>
         </main>
     </div>

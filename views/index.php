@@ -29,14 +29,20 @@ require('info-card.php');
         <main class="mdl-layout__content">
             <div class="page-content">
                 <div class=mdl-grid>
-                    <?php echo getInfoCard(1); ?>
-                    <?php echo getInfoCard(2); ?>
-                    <?php echo getInfoCard(3); ?>
-                    <?php echo getInfoCard(4); ?>
-                    <?php echo getInfoCard(5); ?>
-                    <?php echo getInfoCard(6); ?>
-                    <?php echo getInfoCard(7); ?>
-                    <?php echo getInfoCard(8); ?>
+                    <?php
+                        $apiurl = 'localhost:3000/api/rooms';
+                        $curl = curl_init($apiurl);
+                        curl_setopt( $curl, CURLOPT_URL, $apiurl );
+                        curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
+                        $result = curl_exec( $curl );
+                        $jsonDecoded = json_decode($result, true); // the json is now decoded to a php array
+
+                        foreach ($jsonDecoded as $key => $value){
+                            getInfoCard($key, $jsonDecoded[$key]['title']); // all info cards are shown with the function in info-card.php
+                        }
+
+                        curl_close( $curl );
+                    ?>
                 </div>
             </div>
         </main>

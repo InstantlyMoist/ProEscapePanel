@@ -7,7 +7,7 @@ $is_room = strpos($uri, 'room') !== false;
 if ($is_room) { //TODO: Probably swap to switch case.
     $params = explode('/', $uri);
     $room_number = $params[2];
-    $title =  "Kamer".$room_number;
+    $title =  "Kamer ".$room_number;
 } else {
     $title = "Dashboard";
     $icon = "
