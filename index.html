@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProEscape - Home</title>
+
+    <link rel="stylesheet" href="/material.min.css" />
+    <script src="/material.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <style>
+      .demo-card-square.mdl-card {
+        width: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Titel</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="show-dialog" type="button" class="mdl-button">icon</button>
+    
+            <dialog class="mdl-dialog">
+                <h4 class="mdl-dialog__title">Nieuwe kamer</h4>
+                <form class="mdl-dialog__content">
+                    <input type="text" id="title" name="title" placeholder="Voer de titel in (max. 32 karakters)"><br>
+                    <button name="addRoom">Voeg toe</button>
+                </form>
+            </dialog>
+        
+    
+            <!-- TODO oplossen: url onveilig (behoudt info bij refresh) -->
+    
+            <script>
+                var dialog = document.querySelector('dialog');
+                var showDialogButton = document.querySelector('#show-dialog');
+                if (! dialog.showModal) {
+                    dialogPolyfill.registerDialog(dialog);
+                }
+                showDialogButton.addEventListener('click', function() {
+                    dialog.showModal();
+                });
+                dialog.querySelector('.close').addEventListener('click', function() {
+                    dialog.close();
+                });
+            </script>
+    
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Dashboard</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="/">Dashboard</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+    </div>
+    <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+      
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div class="mdl-grid">
+              hallo
+            <!--<?php
+                        $apiurl = 'localhost:3000/api/rooms';
+                        $curl = curl_init($apiurl);
+                        curl_setopt($curl, CURLOPT_URL, $apiurl);
+                        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                        $result = curl_exec($curl);
+                        $jsonDecoded = json_decode($result, true); // the json is now decoded to a php array
+
+                        foreach ($jsonDecoded as $key =>
+            $value){ $currentRoom = $jsonDecoded[$key];
+            if($currentRoom['camera']) { getInfoCard_cam($key,
+            $currentRoom['title'], $currentRoom['camera'][0]); // all info cards
+            with cameras are shown with the function in info-card.php } else {
+            getInfoCard($key, $currentRoom['title']); // all info cards without
+            cameras are shown with the function in info-card.php } } curl_close(
+            $curl ); ?>-->
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
