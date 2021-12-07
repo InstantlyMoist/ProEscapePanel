@@ -12,8 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProEscape - Room</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"> -->
+    <link rel="stylesheet" href="../material.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </head>
 
@@ -33,12 +34,18 @@
                 ?>
 
                 <h1>Dit is <?=$currentRoom['title']?></h1> <!-- this is the title of the room -->
-                <?php foreach($currentRoom['camera']as$key=>$value){echo "<iframe src='$value/video' frameborder='50px'></iframe><br>";}?>
-                <!-- the live video os shown here, using the IP adresses in the data.json -->
+                <div class="mdl-grid">
+                    <?php foreach($currentRoom['camera']as$key=>$value) {
+                        echo "<div class='mdl-cell--3-col-desktop'><iframe src='$value/video' frameborder='50px'>
+                        </iframe></div>";
+                    }?>
+                    <!-- the live video os shown here, using the IP adresses in the data.json -->
+                </div>
                 Deze kamer wordt op dit moment <?php if($currentRoom['runningState']==false){echo"niet ";}?>gespeeld.<br>
                 <!-- if this room isn't running, it says "niet" between "moment" and "gespeeld" -->
                 Progressie: <?=$currentRoom['progress']?> procent<br>
-                Deze puzzels zijn aanwezig in <?=$currentRoom['title']?>:<br><?php foreach($currentRoom['puzzles']as$key=>$value){echo$value;echo"<br>";}?>
+                Deze puzzels zijn aanwezig in <?=$currentRoom['title']?>:<br>
+                <?php foreach($currentRoom['puzzles']as$key=>$value){echo$value;echo"<br>";}?>
                 <!-- all ids of the puzzles in this room are given in a list here -->
 
                 <?php curl_close($curl); ?>
