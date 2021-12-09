@@ -3,7 +3,6 @@
 
 <?php
 require('info-card.php');
-$icon = "<i class='material-icons'>+</i>";
 ?>
 
 <head>
@@ -93,7 +92,7 @@ $icon = "<i class='material-icons'>+</i>";
                                 getInfoCard_cam($key, $currentRoom['title'], $currentRoom['camera'][0], $currentRoom['progress']); // all info cards with cameras are shown with the function in info-card.php
                             }
                             else {
-                                getInfoCard($key, $currentRoom['title']); // all info cards without cameras are shown with the function in info-card.php
+                                getInfoCard($key, $currentRoom['title'], $currentRoom['progress']); // all info cards without cameras are shown with the function in info-card.php
                             }
                         }
 
@@ -106,3 +105,8 @@ $icon = "<i class='material-icons'>+</i>";
 </body>
 
 </html>
+
+
+
+<!-- views/settings/account.php 11 & /views/settings/contact.php 11 -->
+<!-- views/room/index.php 46 -->

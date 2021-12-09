@@ -1,25 +1,12 @@
-<?php
-$title = null;
-$icon = null;
-
-$uri = $_SERVER['REQUEST_URI'];
-$is_room = strpos($uri, 'room') !== false;
-if ($is_room) { //TODO: Probably swap to switch case.
-    $params = explode('/', $uri);
-    $room_number = $params[2];
-    $title =  "Kamer ".$room_number;
-}
-else {
-    $title = "Dashboard";
-    $icon = "<i class='material-icons'>add</i>";
-}?>
-
 <header class="mdl-layout__header mdl-layout__header--waterfall">
     <!-- Top row, always visible -->
     <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title"><img src="../img/logo-pro-escape-dark-mode.png" alt="" height="40px"></span>
-        <!-- <div class="mdl-layout-spacer"></div> -->
-        <!-- <button id="show-dialog" type="button" class="mdl-button"><?=$icon?></button> -->
+        <a href="https://localhost"><span class="mdl-layout-title"><img src="../../img/logo-pro-escape-dark-mode.png" alt="" height="40px"></span></a>
+        <div class="mdl-layout-spacer"></div>
+        <a href="https://localhost/views/hubs.php"><button type="button" class="mdl-button">Hubs</button></a>
+        <a href="https://localhost"><button type="button" class="mdl-button">Dashboard</button></a>
+        <a href="https://localhost/views/settings/account.php"><button type="button" class="mdl-button">Account</button></a>
+        <a href="https://localhost/views/settings/contact.php"><button type="button" class="mdl-button">Contact</button></a>
     </div>
 </header>
