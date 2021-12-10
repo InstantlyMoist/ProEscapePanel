@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kamer indelen</title>
+  <script src="./node_modules/blockly/blockly_compressed.js"></script>
+  <script src="./node_modules/blockly/blocks_compressed.js"></script>
+  <script src = "./node_modules/blockly/msg/en.js"></script>
+  <script src = "./node_modules/blockly/javascript_compressed.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src ="script.js"></script>
+
+
+  <style>
+    body {
+      background-color: #fff;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+  </style>
+</head>
+<body>
+
+    <p>
+        <button onclick="runCode()">Send room configuration</button>
+    </p>
+  <div id="blocklyDiv" style="height: 920px; width: 1600px;"></div>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <block type = "room_top"></block>
+    <block type = "steps"></block>
+    <block type = 'end_step'></block>
+    
+  </xml>
+
+  <script>
+    let demoWorkspace = Blockly.inject('blocklyDiv',
+        {
+         toolbox: document.getElementById('toolbox')});
+
+    function runCode() {
+      // Generate JavaScript code and run it.
+      
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n'
+      let code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
+      send()
+      
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      
+    }
+  </script>
+
+
+</body>
+</html>
