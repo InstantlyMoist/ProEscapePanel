@@ -26,20 +26,29 @@
 
     <p>
         <button onclick="runCode()">Send room configuration</button>
+        <br>
+        OPASSEN ROOM ID IS HARDCODDED EN STAAT NU OP 3
     </p>
+    
   <div id="blocklyDiv" style="height: 920px; width: 1600px;"></div>
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <block type = "room_top"></block>
+    <h id = "block">
+    <block type = "room_top" deletable="false" ></block>
+    <block type = 'end_step' deletable="false"></block>
+  </h>
     <block type = "steps"></block>
-    <block type = 'end_step'></block>
     
   </xml>
 
   <script>
     let demoWorkspace = Blockly.inject('blocklyDiv',
         {
-         toolbox: document.getElementById('toolbox')});
+         toolbox: document.getElementById('toolbox'),
+        }
+        );
+        Blockly.Xml.domToWorkspace(document.getElementById('block'),
+                               demoWorkspace);
 
     function runCode() {
       // Generate JavaScript code and run it.
