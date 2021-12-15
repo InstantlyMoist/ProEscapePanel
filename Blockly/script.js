@@ -18,7 +18,7 @@ $(document).ready(() =>{
     $.ajax({
         url: `http://localhost:3000/api/rooms`,
     })
-    .done(data =>{
+    .done(data =>{  
         if (!data) return console.log("something went wrong with requesting data");
         console.log(data)
         loadpuzzles(data);
@@ -47,7 +47,8 @@ function send(){ // TO DO change always to done or succes
     $.ajax({
         url: `http://localhost:3000/api/puzzle/blockly`,
         data :  {"order":roomOrder,
-      "code":blockCode},
+      "code":blockCode,
+      "roomID":roomID},
         type : "post",
         crossDomain: true,
     })
