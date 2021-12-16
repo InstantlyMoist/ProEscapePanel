@@ -9,11 +9,12 @@
   <script src = "./node_modules/blockly/javascript_compressed.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src ="script.js"></script>
+  <script src = "Puzzles.js"></script>
 
 
   <style>
     body {
-      background-color: #fff;
+      background-color: rgb(245, 245, 245);
       font-family: sans-serif;
     }
     h1 {
@@ -37,7 +38,13 @@
     <block type = "room_top" deletable="false" ></block>
     <block type = 'end_step' deletable="false"></block>
   </h>
+  <category name="steps" colour="rgb(255, 181, 112)" >
     <block type = "steps"></block>
+  </category>
+    
+    <category name="Puzzles" colour="rgb(255, 123, 0)" id = "Puzzles">
+
+    </category>
     
   </xml>
 
@@ -60,7 +67,7 @@
       send()
       
       Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-      
+
     }
   </script>
 

@@ -1,38 +1,39 @@
-class Puzzles{
-
-    constructor(obj,puzzles,index)
+//location of block used for puzzles
+class PuzzlesBlock{
+    constructor(obj,puzzles,i)
     {
-        switch (puzzles[obj['2']['puzzles'][i]]['title']){
+        switch (puzzles[obj[roomID]['puzzles'][i]]['title']){
             case "Pincode Kluis":
-                this.pin(obj,puzzles,index)
+                this.pin(obj,puzzles,i)
                 break;
-            case "kluis":
-                this.kluis(obj,puzzles,index)
+            case "Kluis":
+                this.kluis(obj,puzzles,i)
                 break;
-            
-
-
-        
+            default: 
+              this.noCode(obj,puzzles,i)
         }
     }
-
+  
     pin(obj,puzzles,i){
-        Blockly.Blocks[`${obj['2']['puzzles'][i]}`] = {
+      let color = (this.RandomInt(36)*5)
+        Blockly.Blocks[`${obj[roomID]['puzzles'][i]}`] = {
             init: function() {
               this.appendValueInput("NAME")
                   .setCheck(null)
-                  .appendField(`${puzzles[obj['2']['puzzles'][i]]['title']}`);
+                  .appendField(`${puzzles[obj[roomID]['puzzles'][i]]['title']}`);
               this.appendDummyInput()
-                  .appendField(new Blockly.FieldNumber(1, 0, 9999), "code");
+                  .appendField("Code voor pin")
+                  .appendField(new Blockly.FieldNumber(1, 0, 9999), `${obj[roomID]['puzzles'][i]}`);
               this.setInputsInline(false);
               this.setOutput(true, null);
-              this.setColour(this.getRandomInt(36) *10);
+              this.setColour(color);
            this.setTooltip("");
            this.setHelpUrl("");
-            }
+            },
+  
           };
-
-          Blockly.JavaScript[`${obj['2']['puzzles'][i]}`] = function(block) {
+  
+          Blockly.JavaScript[`${obj[roomID]['puzzles'][i]}`] = function(block) {
             var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
             var number_code = block.getFieldValue('code');
             // TODO: Assemble JavaScript into code variable.
@@ -40,49 +41,71 @@ class Puzzles{
             // TODO: Change ORDER_NONE to the correct strength.
             return [code, Blockly.JavaScript.ORDER_NONE];
           };
+          this.toolboxBlock(obj,i)
     }
     kluis(obj,puzzles,i)
     {
-        Blockly.Blocks[`${obj['2']['puzzles'][i]}`] = {
+      let color = (this.RandomInt(36)*5)
+        Blockly.Blocks[`${obj[roomID]['puzzles'][i]}`] = {
             init: function() {
               this.appendValueInput("NAME")
                   .setCheck(null)
-                  .appendField(`${puzzles[obj['2']['puzzles'][i]]['title']}`);
+                  .appendField(`${puzzles[obj[roomID]['puzzles'][i]]['title']}`);
               this.appendDummyInput()
-                  .appendField(new Blockly.FieldAngle(255), "kluis");
+                  .appendField("Code voor kluis")
+                  .appendField(new Blockly.FieldNumber(1, 0, 9999), `${obj[roomID]['puzzles'][i]}`);
               this.setInputsInline(false);
               this.setOutput(true, null);
-              this.setColour(this.getRandomInt(36) *10);
+              this.setColour(color);
            this.setTooltip("");
            this.setHelpUrl("");
             }
           };
-
-          Blockly.JavaScript[`${obj['2']['puzzles'][i]}`] = function(block) {
+          Blockly.JavaScript[`${obj[roomID]['puzzles'][i]}`] = function(block) {
             var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
-            var angle_kluis = block.getFieldValue('kluis');
+            var angle_kluis = block.getFieldValue('kluis'); 
             // TODO: Assemble JavaScript into code variable.
             var code = '...';
             // TODO: Change ORDER_NONE to the correct strength.
             return [code, Blockly.JavaScript.ORDER_NONE];
           };
-        this.toolboxBlock(obj)
+          this.toolboxBlock(obj,i)
+          
     }
-
-   getRandomInt(max) { // func to get random color
+    noCode(obj,puzzles,i){
+      Blockly.Blocks[`${obj[roomID]['puzzles'][i]}`] = {
+        init: function() {
+          this.appendValueInput("NAME")
+              .setCheck(null)
+              .appendField(`${puzzles[obj[roomID]['puzzles'][i]]['title']}`);
+          this.setInputsInline(false);
+          this.setOutput(true, null);
+          this.setColour(0);
+       this.setTooltip("");
+       this.setHelpUrl("");
+        }
+      };
+      Blockly.JavaScript[`${obj[roomID]['puzzles'][i]}`] = function(block) {
+        var value_name = Blockly.JavaScript.valueToCode(block, 'NAME', Blockly.JavaScript.ORDER_ATOMIC);
+        // TODO: Assemble JavaScript into code variable.
+        var code = '...';
+        // TODO: Change ORDER_NONE to the correct strength.
+        return [code, Blockly.JavaScript.ORDER_NONE];
+      };
+      this.toolboxBlock(obj,i)
+    }
+  
+   RandomInt(max) { // func to get random color // werkt momenteel niet
         return Math.floor(Math.random() * max);
     }
-    
-    //   toolboxBlock(obj){ // add all created puzzles into the toolbox
-    //     for(let i = 0; i < obj['2']['puzzles'].length;i++){
-    //         $("#toolbox").append(`<block type = ${obj[2]['puzzles'][i]} ></block>`)
-    //         demoWorkspace.updateToolbox(toolbox)
-    //     }
-    // }
-    toolboxBlock(obj){ // add all created puzzles into the toolbox
-            $("#toolbox").append(`<block type = ${obj['2']['puzzles'][i]} ></block>`)
-            demoWorkspace.updateToolbox(toolbox)      
+  
+    toolboxBlock(obj,i){ // add all created puzzles into the toolbox
+            $("#Puzzles").append(`<block type = ${obj[roomID]['puzzles'][i]} ></block>`)
+            demoWorkspace.updateToolbox(toolbox)
+            blockLimit[obj[roomID]['puzzles'][i]] = 1
+            demoWorkspace.options.maxInstances = blockLimit
     }
-
-}
+  
+  }
+  
 module.exports = Puzzles;
