@@ -172,6 +172,7 @@
                             allButtonsOff();
                             btBlockly.innerHTML = "<img src='../img/puzzle-piece-solid - kopie.svg' alt='' class='icon'>"
                             boolPuzzle = true;
+                            window.location.href = "../Blockly/index.html?roomID=<?php echo $room_number;?>"
                         }
                         else {
                             info.innerHTML = ""; // the slider dissappears
@@ -179,7 +180,38 @@
                             boolPuzzle = false;
                         }
                     }
+                    function start(){
+                        $.ajax({
+                            url: `http://localhost:3000/api/puzzle/start`,
+                            type : "get",
+                            data: "roomID=<?php echo $room_number ?>",
+                            crossDomain: true,
+                        })
+                        .always(function(jqXHR, textStatus, errorThrown){
+                        if (errorThrown.status == 200){
+                            alert("Room has started")
+                        }else{
+                            alert("Something went wrong "+ errorThrown.status); 
+                        }
+                        })
+                    }
+
+                    
                 </script>
+                        <button onClick="start()" class="non-style center">
+                            start puzzles
+                     </button>
+                <?php 
+                foreach($jsonDecoded[$room_number]['order'] as $key ){
+                    echo "<table>";
+                    foreach($key as $value){
+                        $i = 0;
+                        echo"<tr><td id =$i stap></td><td>$value</td></tr>";
+                        $i++;
+                    };
+                };
+                echo "</table>";
+                ?>
 
                 <?php curl_close($curl); ?>
             </div>
