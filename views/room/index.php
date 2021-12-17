@@ -73,24 +73,35 @@
                     const btStop = document.getElementById("btLock");
                     const btBlockly = document.getElementById("btPuzzle");
 
-                    let boolRefresh = false;
-                    let boolMic = false;
-                    let boolVol = false;
-                    let boolRing = false;
-                    let boolLock = false;
-                    let boolPuzzle = false;
+                         boolRefresh = false;
+                         boolMic = false;
+                         boolVol = false;
+                         boolRing = false;
+                         boolLock = false;
+                         boolPuzzle = false;
 
+                    function allButtonsOff(){
+                        boolRefresh = false;
+                        boolMic = false;
+                        boolVol = false;
+                        boolRing = false;
+                        boolLock = false;
+                        boolPuzzle = false;
+
+                        btRestart.innerHTML = "<img src='../img/arrow-rotate-right-solid.svg' alt='' class='icon'>"
+                        btTalk.innerHTML = "<img src='../img/microphone-solid.svg' alt='' class='icon'>"
+                        btSound.innerHTML = "<img src='../img/volume-high-solid.svg' alt='' class='icon'>"
+                        btAlarm.innerHTML = "<img src='../img/bell-solid.svg' alt='' class='icon'>"
+                        btStop.innerHTML = "<img src='../img/lock-solid.svg' alt='' class='icon'>"
+                        btBlockly.innerHTML = "<img src='../img/puzzle-piece-solid.svg' alt='' class='icon'>"
+                    }
 
                     function restart() {
                         if(boolRefresh == false) {
                             info.innerHTML = "RESTARTING..."; // here should appear a slider to change the volume
+                            allButtonsOff();
                             btRestart.innerHTML = "<img src='../img/arrow-rotate-right-solid - kopie.svg' alt='' class='icon'>"
                             boolRefresh = true;
-                            boolMic = false;
-                            boolVol = false;
-                            boolRing = false;
-                            boolLock = false;
-                            boolPuzzle = false;
                         }
                         else {
                             info.innerHTML = ""; // the slider dissappears
@@ -102,13 +113,9 @@
                     function talk() {
                         if(boolMic == false) {
                             info.innerHTML = "MIC ON"; // here should appear a slider to change the volume
+                            allButtonsOff();
                             btTalk.innerHTML = "<img src='../img/microphone-solid - kopie.svg' alt='' class='icon'>"
                             boolMic = true;
-                            boolRefresh = false;
-                            boolVol = false;
-                            boolRing = false;
-                            boolLock = false;
-                            boolPuzzle = false;
                         }
                         else {
                             info.innerHTML = "MIC OFF"; // the slider dissappears
@@ -120,13 +127,9 @@
                     function sound() {
                         if(boolVol == false) {
                             info.innerHTML = "MUTED"; // here should appear a slider to change the volume
+                            allButtonsOff();
                             btSound.innerHTML = "<img src='../img/volume-high-solid - kopie.svg' alt='' class='icon'>"
                             boolVol = true;
-                            boolRefresh = false;
-                            boolMic = false;
-                            boolRing = false;
-                            boolLock = false;
-                            boolPuzzle = false;
                         }
                         else {
                             info.innerHTML = "UNMUTED"; // the slider dissappears
@@ -138,13 +141,9 @@
                     function alarm() {
                         if(boolRing == false) {
                             info.innerHTML = "!!!"; // here should appear a slider to change the volume
+                            allButtonsOff();
                             btAlarm.innerHTML = "<img src='../img/bell-solid - kopie.svg' alt='' class='icon'>"
                             boolRing = true;
-                            boolRefresh = false;
-                            boolMic = false;
-                            boolVol = false;
-                            boolLock = false;
-                            boolPuzzle = false;
                         }
                         else {
                             info.innerHTML = ""; // the slider dissappears
@@ -156,13 +155,9 @@
                     function stop() {
                         if(boolLock == false) {
                             info.innerHTML = "GAME LOCKED"; // here should appear a slider to change the volume
+                            allButtonsOff();
                             btStop.innerHTML = "<img src='../img/lock-solid - kopie.svg' alt='' class='icon'>"
                             boolLock = true;
-                            boolRefresh = false;
-                            boolMic = false;
-                            boolVol = false;
-                            boolRing = false;
-                            boolPuzzle = false;
                         }
                         else {
                             info.innerHTML = ""; // the slider dissappears
@@ -174,13 +169,9 @@
                     function blockly() {
                         if(boolPuzzle == false) {
                             info.innerHTML = ""; // here should appear a slider to change the volume
+                            allButtonsOff();
                             btBlockly.innerHTML = "<img src='../img/puzzle-piece-solid - kopie.svg' alt='' class='icon'>"
                             boolPuzzle = true;
-                            boolRefresh = false;
-                            boolMic = false;
-                            boolVol = false;
-                            boolRing = false;
-                            boolLock = false;
                         }
                         else {
                             info.innerHTML = ""; // the slider dissappears

@@ -3674,13 +3674,27 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple,
 .mdl-dialog {
     border: none;
     box-shadow: 0 9px 46px 8px rgba(0, 0, 0, .14), 0 11px 15px -7px rgba(0, 0, 0, .12), 0 24px 38px 3px rgba(0, 0, 0, .2);
-    width: 280px
+    width: 280px;
+    align-items: center;
 }
 
 .mdl-dialog__title {
     padding: 24px 24px 0;
-    margin: 0;
-    font-size: 2.5rem
+    margin: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FF7B00;
+}
+
+.mdl-dialog input {
+    margin: auto;
+}
+
+.mdl-dialog button {
+    background-color: #FF7B00;
+    margin: auto;
+    color: white;
+    margin-top: 10px;
 }
 
 .mdl-dialog__actions {
@@ -4699,7 +4713,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple,
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
-    position: relative;
+    /* position: relative; */
     -webkit-overflow-scrolling: touch
 }
 
@@ -7804,6 +7818,68 @@ fieldset[disabled] .mdl-textfield .mdl-textfield__label,
     width: 80%;
     padding: 30px;
     text-align: center;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+    background-color: white;
+    color: black;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 

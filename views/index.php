@@ -34,6 +34,7 @@ require('info-card.php');
                     <button id="show-dialog" type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mg0 pad10">
                         <i class="material-icons">+</i>
                     </button>
+                    
                     <dialog class="mdl-dialog">
                         <h4 class="mdl-dialog__title">Nieuwe kamer</h4>
                         <form class="mdl-dialog__content">
