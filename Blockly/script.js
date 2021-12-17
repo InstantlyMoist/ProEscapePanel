@@ -4,7 +4,11 @@ TODO need big cleanup of code
   roomid is  hardcoded by load blocks
 */
 
-let roomID = "3";
+// gets roomID from url
+let param = window.location.search
+let urlParam =  new URLSearchParams(param)
+
+let roomID = urlParam.get('roomID');
 //var needed to only allow these blocks to be used once
 
 let blockLimit ={'end_step': 1,
@@ -44,16 +48,16 @@ function send(){ // TO DO change always to done or succes
     .always(function(jqXHR, textStatus, errorThrown){
       if (errorThrown.status == 200){
         demoWorkspace.clear();
-        alert("Roomcode has been send")
-        stepCount = 1;
+        // alert("Roomcode has been send")
+        history.go(-1);
       }else{
         alert("Something went wrong "+ errorThrown.status); 
         demoWorkspace.clear() ;
-        stepCount = 1    
+        Blockly.Xml.domToWorkspace(document.getElementById('block'),
+        demoWorkspace);   
       }
     })
-    Blockly.Xml.domToWorkspace(document.getElementById('block'),
-    demoWorkspace);
+
 }
 
 //array with order of puzzles
