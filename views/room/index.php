@@ -23,16 +23,6 @@
         <?php include_once('header.php') ?>
         <main class="mdl-layout__content">
             <div class="page-content">
-                <?php
-                    $apiurl = 'localhost:3000/api/rooms';
-                    $curl = curl_init($apiurl);
-                    curl_setopt( $curl, CURLOPT_URL, $apiurl );
-                    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-                    $result = curl_exec( $curl );
-                    $jsonDecoded = json_decode($result, true); // the json is now decoded to a php array
-                    $currentRoom = $jsonDecoded[$room_number];
-                ?>
-
                 <!-- Image card with the live feed from the room -->
                 <div class="demo-card-image mdl-card room">
                     <h1 class="room_title" style=""><?=$room_number?>. <?=$currentRoom['title']?></h1>
@@ -190,6 +180,7 @@
                         .always(function(jqXHR, textStatus, errorThrown){
                         if (errorThrown.status == 200){
                             alert("Room has started")
+                            location.reload();
                         }else{
                             alert("Something went wrong "+ errorThrown.status); 
                         }
@@ -198,19 +189,41 @@
 
                     
                 </script>
-                        <button onClick="start()" class="non-style center">
-                            start puzzles
-                     </button>
+                        <button onClick="start()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                        Kamer starten
+                        </button>
                 <?php 
-                foreach($jsonDecoded[$room_number]['order'] as $key ){
+                    $apiurlRooms = 'localhost:3000/api/rooms';
+                    $curlRoom = curl_init($apiurlRooms);
+                    curl_setopt($curlRoom, CURLOPT_URL, $apiurlRooms);
+                    curl_setopt($curlRoom, CURLOPT_RETURNTRANSFER, 1);
+                    $resultRooms = curl_exec($curlRoom);
+                    $rooms = json_decode($resultRooms, true); // the json is now decoded to a php array
+
+                    $apiurlPuzzles = 'localhost:3000/api/puzzles';
+                    $curlPuzzles = curl_init($apiurl);
+                    curl_setopt($curlPuzzles, CURLOPT_URL, $apiurlPuzzles);
+                    curl_setopt($curlPuzzles, CURLOPT_RETURNTRANSFER, 1);
+                    $resultPuzzles = curl_exec($curlPuzzles);
+                    $puzzles = json_decode($resultPuzzles, true); // the json is now decoded to a php array
+                    echo "<br>";
+                    echo "Room progress: {$rooms[$room_number]['progress']}" ;
+                    echo"<br>";
                     echo "<table>";
-                    foreach($key as $value){
-                        $i = 0;
-                        echo"<tr><td id =$i stap></td><td>$value</td></tr>";
+                    echo "<th>Stappen</th><th >puzzles</th>";
+                    $i = 1;
+                    foreach($rooms[$room_number]['order'] as $key ){
+                        echo"<tr><td>stap $i</td>";
+                        foreach($key as $value){
+
+                            echo"<td>{$puzzles[$value]['title']}</td>";
+
+                        };
+                        echo "</tr>";
+
                         $i++;
                     };
-                };
-                echo "</table>";
+                    echo "</table>";
                 ?>
 
                 <?php curl_close($curl); ?>
