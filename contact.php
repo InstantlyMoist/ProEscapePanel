@@ -25,7 +25,8 @@
                             Tim den Hartigh <br>
                             <br>
                             Professor Goossenslaan 1, gebouw P8 <br>
-                            5022 DM Tilburg
+                            5022 DM Tilburg <br>
+                            06 10176464
                         </div>
                         <div>
                             k.veroude@student.fontys.nl<br>
