@@ -21,6 +21,7 @@ $(document).ready(() =>{
     .done(data =>{  
         if (!data) return console.log("something went wrong with requesting data");
         console.log(data)
+        $("#room").append(`<b>${data[roomID]['title']}</b>`)
         loadpuzzles(data);
         
     })
@@ -48,8 +49,7 @@ function send(){ // TO DO change always to done or succes
     .always(function(jqXHR, textStatus, errorThrown){
       if (errorThrown.status == 200){
         demoWorkspace.clear();
-        // alert("Roomcode has been send")
-        history.go(-1);
+        window.location.href = `https://localhost/room/${roomID}`; // using local host not sure if this will work forever
       }else{
         alert("Something went wrong "+ errorThrown.status); 
         demoWorkspace.clear() ;
