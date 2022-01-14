@@ -14,7 +14,28 @@
     <?php include_once('../../header.php') ?>
         <main class="mdl-layout__content">
             <div class="page-content">
-                
+                    <h1>Contact</h1>
+                    Deze opdracht is uitgevoerd in naam van Fontys Hogescholen. <br><br>
+                    <div class="flex w50">
+                        <div>
+                            Kim Veroude <br>
+                            Kyllian Warmerdam <br>
+                            Andreas Derksen <br>
+                            Melad Rahmani <br>
+                            Tim den Hartigh <br>
+                            <br>
+                            Professor Goossenslaan 1, gebouw P8 <br>
+                            5022 DM Tilburg <br>
+                            06 10176464
+                        </div>
+                        <div>
+                            k.veroude@student.fontys.nl<br>
+                            k.warmerdam@student.fontys.nl<br>
+                            a.derksen@student.fontys.nl<br>
+                            m.rahmani@student.fontys.nl<br>
+                            t.denhartigh@student.fontys.nl
+                        </div>
+                    </div>
             </div>
         </main>
     </div>
