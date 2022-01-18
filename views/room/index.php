@@ -89,7 +89,9 @@
                     </button>
 
                     <dialog class="mdl-dialog">
-                        <h4 class="mdl-dialog__title">Nieuwe puzzle</h4>
+                        <p class = "invis-button" id = "close">X</p>
+                        </br>
+                        <h4 class="mdl-dialog__title">Nieuwe puzzel</h4>
                         <form class="mdl-dialog__content">
                             <label for="Puzzle">Kies een puzzle:</label>
                             <select name="Puzzle" id="Puzzle" multiple>
@@ -108,7 +110,7 @@
                                 <?php
                                     foreach($rooms[$room_number]['puzzles'] as $key){
                                         $titel = $puzzles[$key]['title'];
-                                        echo "<option value = '${key}'> ${titel} ${key}</option>";
+                                        echo "<option value = '${key}'> ${titel}-${key}</option>";
                                     }
                                 ?>
                             </select>
@@ -288,7 +290,7 @@
                         })
                     }
 
-                   
+                    
                     let dialog = document.querySelector('dialog');  
                     let showDialogButton = document.querySelector('#show-dialog');
                     if (! dialog.showModal) {
@@ -297,9 +299,10 @@
                     showDialogButton.addEventListener('click', function() {
                         dialog.showModal();
                     });
-                    dialog.querySelector('.close').addEventListener('click', function() {
+                    document.getElementById('close').addEventListener('click', function() {
                             dialog.close();
                         });
+                    
 
                     
                 </script>
@@ -308,34 +311,45 @@
                         Kamer starten
                         </button></div>
                 <?php 
-
-                    echo "<br>";
-                    echo "Room progress: {$rooms[$room_number]['progress']}%" ;
-                    echo"<br>";
-                    echo "<table>";
-                    echo "<th>Stappen</th><th >Puzzles</th>";
-                    $i = 1;
-                    foreach($rooms[$room_number]['order'] as $key ){
-                        echo"<tr><td>stap $i</td>";
-                        foreach($key as $value){
-
-                            echo"<td>{$puzzles[$value]['title']}</td>";
+                    if (!empty($rooms[$room_number]['order'])){
+                        echo "<br>";
+                        echo "Room progress: {$rooms[$room_number]['progress']}%" ;
+                        echo"<br>";
+                        echo "<table>";
+                        echo "<th>Stappen</th><th >Puzzles</th>";
+                        $i = 1;
+                        foreach($rooms[$room_number]['order'] as $key ){
+                            echo"<tr><td>stap $i</td>";
+                            foreach($key as $value){
+    
+                                echo"<td>{$puzzles[$value]['title']}</td>";
+                            };
+                            echo "</tr>";
+    
+                            $i++;
                         };
-                        echo "</tr>";
+                        if (!empty($rooms[$room_number]['current'])){
+                            echo "</table>";
+                            echo "<br>";
+                            echo "<b>bezig met:</b>";
+                            echo "<br>";
+        
+                            foreach($rooms[$room_number]['current'] as $key){
+                               for ($i = 0; $i < sizeof($key); $i++ ){
+                                   echo $puzzles[$key[$i]]['title'];
+                                   echo "<br>";
+                               }
+                            }
+                        }else{
+                            echo "</br>";
+                            echo "Start de kamer om de huidige puzzel te zien.";
+                        }
 
-                        $i++;
-                    };
-                    echo "</table>";
-                    echo "<br>";
-                    echo "<b>bezig met:</b>";
-                    echo "<br>";
-
-                    foreach($rooms[$room_number]['current'] as $key){
-                       for ($i = 0; $i < sizeof($key); $i++ ){
-                           echo $puzzles[$key[$i]]['title'];
-                           echo "<br>";
-                       }
+                    }else{
+                        echo "</br>";
+                        echo "Er is geen order, maak een in blockly.";
                     }
+
                 ?>
 
                 <?php curl_close($curl); ?>
