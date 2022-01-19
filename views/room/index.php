@@ -105,7 +105,7 @@
                             <button name="addPuzzle" id = "buttonAdd">Voeg toe</button>
                         </form>
                         <form class = "mdl-dialog__content">
-                            <label for = "removePuzzle"> Verwijder een puzzle</label>
+                            <label for = "removePuzzle"> Verwijder een puzzel</label>
                             <select name = "removePuzzle" id = "removePuzzle" multiple>
                                 <?php
                                     foreach($rooms[$room_number]['puzzles'] as $key){
